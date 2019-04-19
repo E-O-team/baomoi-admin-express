@@ -6,7 +6,7 @@
   "scripts": {
     "baomoi-admin-install": "cd baomoi-admin && npm install",
     "start": "babel-node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "heroku-postbuild": "cd baomoi-admin && npm install && npm run build",
     "server": "nodemon --exec babel-node server.js",
     "baomoi-admin": "npm start --prefix baomoi-admin",
     "dev": "concurrently \"npm run server\" \"npm run baomoi-admin\""
