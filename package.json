@@ -1,12 +1,15 @@
 {
-  "name": "reactexpress",
+  "name": "baomoi-admin-express",
   "version": "1.0.0",
   "description": "Starter kit for creating React and Express apps",
   "main": "server.js",
   "scripts": {
+    "baomoi-admin-install": "cd baomoi-admin && npm install",
+    "start": "babel-node server.js",
     "heroku-postbuild": "cd baomoi-admin && npm install && npm run build",
-    "build-babel": "mkdir buildServer && babel -d ./buildServer",
-    "start": "npm run build-babel && node ./buildServer/index.js"
+    "server": "nodemon --exec babel-node server.js",
+    "baomoi-admin": "npm start --prefix baomoi-admin",
+    "dev": "concurrently \"npm run server\" \"npm run baomoi-admin\""
   },
   "author": "NeoTheSecond",
   "license": "MIT",
