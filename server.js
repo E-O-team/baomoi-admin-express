@@ -89,6 +89,4 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/baomoi-admin/build/index.html'));
 });
 
-const port = 5000;
-
-app.listen(port, () => `Server running on port ${port}`);
+app.listen(process.env.PORT || 5000, () => console.log("Listening to port 3000");
