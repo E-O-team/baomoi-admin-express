@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "baomoi-admin-install": "cd baomoi-admin && npm install",
-    "start": "babel-node server.js",
+    "start": "concurrently \"npm run server\" \"npm run baomoi-admin\"",
     "server": "nodemon --exec babel-node server.js",
     "baomoi-admin": "npm start --prefix baomoi-admin",
     "dev": "concurrently \"npm run server\" \"npm run baomoi-admin\""
