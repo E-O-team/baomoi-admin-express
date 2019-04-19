@@ -4,14 +4,11 @@
   "description": "Starter kit for creating React and Express apps",
   "main": "server.js",
   "scripts": {
-    "baomoi-admin-install": "cd baomoi-admin && npm install",
-    "start": "babel-node server.js",
     "heroku-postbuild": "cd baomoi-admin && npm install && npm run build",
-    "server": "nodemon --exec babel-node server.js",
-    "baomoi-admin": "npm start --prefix baomoi-admin",
-    "dev": "concurrently \"npm run server\" \"npm run baomoi-admin\""
+    "build-babel": "mkdir buildServer && babel -d ./buildServer ./src -s",
+    "start": "npm run build-babel && node ./buildServer/index.js"
   },
-  "author": "Brad Traversy",
+  "author": "NeoTheSecond",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.4.3",
