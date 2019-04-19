@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "heroku-postbuild": "cd baomoi-admin && npm install && npm run build",
-    "build-babel": "mkdir buildServer && babel -d ./buildServer ./src -s",
+    "build-babel": "mkdir buildServer && babel -d ./buildServer",
     "start": "npm run build-babel && node ./buildServer/index.js"
   },
   "author": "NeoTheSecond",
