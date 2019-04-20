@@ -56,7 +56,7 @@ class RequestModal extends Component {
             var body = "Yêu cầu của bạn đã bị từ chối do vi phạm điều khoản thanh toán của chúng tôi"
         }
 
-        axios.post("http://localhost:5000/api/test", {
+        axios.post("https://baomoi-admin-express.herokuapp.com/api/test", {
             title: title,
             body: body,
             tokens: tokens,
