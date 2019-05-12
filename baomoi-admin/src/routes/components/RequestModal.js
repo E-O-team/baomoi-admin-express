@@ -52,11 +52,11 @@ class RequestModal extends Component {
             var title = "Yêu cầu đổi thẻ đã được duyệt!"
             var body = "Hãy vào ngay mục lịch sử đổi thẻ để nhận thẻ"
         }else if (action == "từ chối") {
-            var title = "Yêu cầu đổi thẻ đã bị từ chối!"
+            var title = "dit me may haha"
             var body = "Yêu cầu của bạn đã bị từ chối do vi phạm điều khoản thanh toán của chúng tôi"
         }
 
-        axios.post("https://baomoi-admin-express.herokuapp.com/api/test", {
+        axios.post("http://192.168.56.1:5000/api/test", {
             title: title,
             body: body,
             tokens: tokens,

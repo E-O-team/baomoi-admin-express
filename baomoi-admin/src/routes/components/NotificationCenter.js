@@ -76,7 +76,7 @@ class NotificationCenter extends React.Component {
             return
         }else{
             console.log(this.state.tokens);
-            axios.post("https://baomoi-admin-express.herokuapp.com/api/test", {
+            axios.post("http://192.168.1.9:5000/api/test", {
                 title: this.state.title,
                 body: this.state.body,
                 tokens: this.state.tokens,

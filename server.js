@@ -12,7 +12,7 @@ function sendNoti(title, body, tokens) {
     // Create a new Expo SDK client
     let expo = new Expo();
     // Create the messages that you want to send to clents
-    const tokensSend = [...tokens]
+    const tokensSend = ["ExponentPushToken[m46rkzF63XLq2XmZWUM4RC]", "ExponentPushToken[yVnt2vHnQYgT5Mekho2prM]"]
     let messages = [];
     for (let pushToken of tokensSend) {
         // Each push token looks like ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]
@@ -38,7 +38,7 @@ function sendNoti(title, body, tokens) {
         messages.push({
             to: pushToken,
             sound: 'default',
-            title: title,
+            title: 'dit me haha',
             body: body,
             data: {
                 title: title,
@@ -71,6 +71,8 @@ function sendNoti(title, body, tokens) {
 
 
 app.post("/api/test", (req, res) => {
+    console.log("in route")
+    console.log(req.body.tokens)
     sendNoti(req.body.title, req.body.body, req.body.tokens);
     res.json("done")
 })
