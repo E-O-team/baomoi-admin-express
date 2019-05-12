@@ -31,7 +31,8 @@ class RequestModal extends Component {
             series_number: "",
             token: localStorage.getItem("token"),
             sendButtonLabel: "duyệt",
-            refuseButtonLabel: "từ chối"
+            refuseButtonLabel: "từ chối",
+            deleteButtonLabel: "xóa"
         };
 
     }
@@ -49,14 +50,14 @@ class RequestModal extends Component {
         const tokens = [deviceToken]
         console.log(action);
         if(action == "duyệt"){
-            var title = "Yêu cầu đổi thẻ đã được duyệt!"
+            var title = "Tới " + this.props.data.original.title + ": Yêu cầu đổi thẻ đã được duyệt!"
             var body = "Hãy vào ngay mục lịch sử đổi thẻ để nhận thẻ"
         }else if (action == "từ chối") {
-            var title = "dit me may haha"
+            var title = "Tới " + this.props.data.original.title + ": Yêu cầu đổi thẻ đã bị từ chối!"
             var body = "Yêu cầu của bạn đã bị từ chối do vi phạm điều khoản thanh toán của chúng tôi"
         }
 
-        axios.post("http://192.168.56.1:5000/api/test", {
+        axios.post("https://baomoi-admin-express.herokuapp.com/api/test", {
             title: title,
             body: body,
             tokens: tokens,
@@ -163,6 +164,26 @@ class RequestModal extends Component {
                 }
             })
             .catch(err => console.log(err))
+        }else if (action == 'xóa'){
+            this.setState({deleteButtonLabel: "đang xóa..."})
+            const {id} = this.props.data.original
+            const data = new FormData()
+            data.append("force", true)
+            axios({
+                method: "DELETE",
+                url: 'https://baomoi.press/wp-json/wp/v2/cardrequest/' + id,
+                headers: {'Authorization': 'Bearer ' + this.state.token},
+                data: data
+            })
+
+            .then(res => {
+                if(res.status == 200){
+                    this.setState({
+                        deleteButtonLabel: "đã xóa"
+                    })
+                }
+            })
+            .catch(err => console.log(err))
         }
 
     }
@@ -210,6 +231,7 @@ class RequestModal extends Component {
                             <Box pad="medium" gap="medium" align="end" direction="row">
                                 <Button label={this.state.sendButtonLabel} color="brand" onClick={() => this.handleSend("duyệt")}/>
                                 <Button label={this.state.refuseButtonLabel} color="brand" onClick={() => this.handleSend("từ chối")}/>
+                                <Button label={this.state.deleteButtonLabel} color="red" onClick={() => this.handleSend("xóa")}/>
                             </Box>
 
 

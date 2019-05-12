@@ -76,11 +76,14 @@ class NotificationCenter extends React.Component {
             return
         }else{
             console.log(this.state.tokens);
-            axios.post("http://192.168.1.9:5000/api/test", {
+            axios.post("https://baomoi-admin-express.herokuapp.com/api/test", {
                 title: this.state.title,
                 body: this.state.body,
+                slug: this.state.slug,
                 tokens: this.state.tokens,
             })
+            .then(res => alert('Đã gửi thông báo'))
+            .catch(err => console.log(err))
             // // Create a new Expo SDK client
             // let expo = new Expo();
             //
@@ -159,7 +162,7 @@ class NotificationCenter extends React.Component {
                     </Box>
                     <h1>{this.state.fetchingToken}</h1>
                 </Box>
-                <Box pad="medium" gap="medium" >
+                <Box pad="medium" gap="large" >
                     <Box direction="row" align="center" gap="medium">
                         <Box width="large">
                             <TextInput
@@ -181,7 +184,7 @@ class NotificationCenter extends React.Component {
                         />
                     </Box>
 
-                    <Box width="large">
+                    <Box width="large" >
                         <TextInput
                             placeholder="url ảnh"
                             focusIndicator="true"

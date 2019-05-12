@@ -18,7 +18,10 @@ import {
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'
 import RequestModal from './RequestModal';
+import moment from 'moment'
 import axios from 'axios';
+
+
 const columns = [{
     Header: "id",
     accessor: "id",
@@ -40,6 +43,9 @@ const columns = [{
 },{
     Header: "Báo cáo",
     accessor: "report"
+},{
+    Header: "Thời gian",
+    accessor: "date"
 }]
 
 
@@ -76,6 +82,7 @@ class Requests extends Component {
                     userID: request.acf.userID,
                     request_status: request.acf.request_status,
                     report: request.acf.report,
+                    date: moment(request.date).format('MMMM Do YYYY, h:mm')
                 }
             })
             this.setState({
